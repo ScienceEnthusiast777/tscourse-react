@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-
+import "./NewToDo.css";
 interface INewToDoProps {
-  addHandler: (toDoText : string) => void;
+  addHandler: (toDoText: string) => void;
 }
 
 const NewToDo: React.FC<INewToDoProps> = (props) => {
@@ -9,12 +9,15 @@ const NewToDo: React.FC<INewToDoProps> = (props) => {
 
   const toDoSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    const enteredText = textInputRef.current!.value;
-    props.addHandler(enteredText);
+    if (textInputRef.current!.value.length > 0) {
+      const enteredText = textInputRef.current!.value;
+      props.addHandler(enteredText);
+      textInputRef.current!.value = "";
+    }
   };
 
   return (
-    <form onSubmit={toDoSubmitHandler}>
+    <form className="form-control" onSubmit={toDoSubmitHandler}>
       <div>
         <label htmlFor="todo-text">ToDo Text</label>
         <input type="text" id="todo_text" ref={textInputRef} />

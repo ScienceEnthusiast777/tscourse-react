@@ -1,8 +1,9 @@
 import React from "react";
+import "./ToDoList.css";
 
 interface IToDoListProps {
   items: { id: string; text: string }[];
-  onDeleteToDo: (id:string) => void;
+  onDeleteToDo: (id: string) => void;
 }
 
 const ToDoList: React.FC<IToDoListProps> = (props) => {
@@ -11,7 +12,9 @@ const ToDoList: React.FC<IToDoListProps> = (props) => {
       {props.items.map((todo) => (
         <li key={todo.id}>
           <span>{todo.text}</span>
-          <button onClick={props.onDeleteToDo.bind(null,todo.id)}>DELETE</button>
+          <button onClick={props.onDeleteToDo.bind(null, todo.id)}>
+            DELETE
+          </button>
         </li>
       ))}
     </ul>
